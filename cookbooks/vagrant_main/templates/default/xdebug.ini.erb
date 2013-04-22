@@ -1,0 +1,21 @@
+zend_extension=<%= @path %>xdebug.so
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; configuration for php xdebug module
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+xdebug.profiler_enable_trigger = 1
+xdebug.default_enable = 1
+xdebug.remote_enable = 1
+xdebug.remote_handler = dbgp
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; change this to be your local machine 
+; IP address
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+xdebug.remote_host = 33.33.33.1
+xdebug.remote_connect_back = 1
+xdebug.remote_port = 9000
+xdebug.remote_autostart = 0
+xdebug.remote_log=/tmp/php5-xdebug.log
+
+report_zend_debug = 1
