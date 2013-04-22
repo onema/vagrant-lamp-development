@@ -1,39 +1,42 @@
-# Grouptopics w/ Vagrant
+# Vagrantfile and Chef Recipes for LAMP Development
 
-A basic Ubuntu 10.04 Vagrant setup for [Grouptopics](https://github.com/sdphp/grouptopics.org) and PHP 5.4.
+Ubuntu 12.04 Vagrant setup for development.
 
 ## Requirements
 
 * VirtualBox - Free virtualization software [Downloads](https://www.virtualbox.org/wiki/Downloads)
-* Vagrant - Tool for working with virtualbox images [Vagrant Home](https://www.vagrantup.com), click on 'download now link'
+* Vagrant (Tested with Vagrant v 1.2.1)- Tool for working with virtualbox images [Vagrant Home](https://www.vagrantup.com), click on 'download now link'
 * Git - Source Control Management [Downloads](http://git-scm.com/downloads)
 
-## Quick Start - Using Vagrant
+## Quick Start 
+The inital intention of this repo is to have a single general purpose development environment for multiple projects, although it can be used to run a single project. 
 
-You can set up a development virtual machine running Grouptopics by following these simple instructions.
+You can set up a development virtual machine for any of your development projects. All you need to do is point the vagrant-root to your local development directory. To do this modify the following conf.vm.shared_folder:
+```ruby
+config.vm.share_folder "vagrant-root", "/vagrant", "~/Sites", :extra => 'dmode=777,fmode=777'#, :nfs => true
+```
+Where "~/Sites" is the location the development directory in your local machine. 
 
-1. Install requirements. (Note: these are not required by grouptopics itself, but are required for this quick start guide.)
-   - VirtualBox (https://www.virtualbox.org/) (versions 4.0 and 4.1 are currently supported)
-   - Ruby (http://www.ruby-lang.org/)
-   - Vagrant (http://vagrantup.com/)
-
-2. Clone repository to any location and fetch required submodules (containing Puppet manifests).
-
-        git clone https://github.com/sdphp/grouptopics.org
-        cd grouptopics
-
-3. Start the process by running Vagrant.
+Start the VM by running Vagrant.
 
         vagrant up
+        
+Now open your web browser and visit the followign URLs:
 
-4. Add hostname to /etc/hosts.
+http://localhost:8080/project01/public/index.php
 
-        echo "127.0.0.1 dev.gt " | sudo tee -a /etc/hosts
+http://localhost:8080/project02/web/index.php
 
-5. Browse to the newly provisioned development copy of grouptopics.
+http://localhost:8080/symfony/web/app_dev.php/
 
-        open http://dev.gt:8080
 
+Where project01, project02 and symfony are the directory names of the projects I'm currently working on, so change these accordingly. 
+
+PHPMyAdmin is installed and you can access it by visiting
+
+[http://localhost:8080/phpmyadmin/](http://localhost:8080/phpmyadmin/)
+
+        
 ### Using Vagrant
 
 Vagrant is [very well documented](http://vagrantup.com/v1/docs/index.html) but here are a few common commands:
@@ -46,9 +49,12 @@ Vagrant is [very well documented](http://vagrantup.com/v1/docs/index.html) but h
 
 ##### Virtual Machine Specifications #####
 
-* OS     - Ubuntu 11.04
-* Apache - 2.2.22
-* PHP    - 5.3.2
-* MySQL  - 5.5.28
-
-Phpmyadmin is available [http://dev.gt:8080/phpmyadmin/](http://dev.gt:8080/phpmyadmin/). User `root`, Password `root`
+* OS        - Ubuntu 12.04 (precise64)
+* Apache    - 2.2.22
+* PHP       - 5.3.10
+* MySQL     - 5.5.28
+* MongoDB   - 2.4.2
+* Xdebug    - 2.1.0
+* Memcached - 1.4.13
+* Redis     - 2.6.12
+Phpmyadmin is available [http://localhost:8080/phpmyadmin/](http://localhost:8080/phpmyadmin/). User `root`, Password `root`
