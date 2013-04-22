@@ -1,0 +1,4 @@
+cookbook 'memcached', :path => '.'
+cookbook 'minitest-handler', :git => 'git://github.com/btm/minitest-handler-cookbook.git', :ref => 'e2e99b3866862b7e0348e74099af7b5954cff76b'
+#cookbook 'logrotate', :locked_version => '1.1.0'
+cookbook 'chef_handler', :locked_version => '1.1.4'
