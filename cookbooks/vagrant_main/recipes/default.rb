@@ -32,26 +32,38 @@ php_pear "mongo" do
   action :install
 end
 
+# manual method to set localhost
+#s = "localhost"
+#site = {
+#  :name => s,
+#  :host => "#{s}", 
+#  :aliases => ["dev.#{s}.web", "dev.#{s}-static.web"]
+#}
 
-s = "localhost"
-site = {
-  :name => s,
-  :host => "#{s}", 
-  :aliases => ["dev.#{s}.web", "dev.#{s}-static.web"]
-}
 
+# Add vhosts
 # Configure the development site
-web_app site[:name] do
-  template "sites.conf.erb"
-  server_name site[:host]
-  server_aliases site[:aliases]
-  docroot "/vagrant/"
-end  
+node[:vhost].each do |app_name, site|
+    
+    puts "NAME:    #{site[:name]}"
+    puts "HOST:    #{site[:host]}"
+    puts "ALIAS:   #{site[:aliases]}"
+    puts "DOCROOT: #{site[:docroot]}"
 
-# Add site info in /etc/hosts
-bash "info_in_etc_hosts" do
-  code "echo 127.0.0.1 #{site[:host]} >> /etc/hosts"
+    web_app site[:name] do
+      template "sites.conf.erb"
+      server_name site[:host]
+      server_aliases site[:aliases]
+      docroot "/vagrant#{site[:docroot]}"
+    end  
+
+    # Add site info in /etc/hosts
+    bash "info_in_etc_hosts" do
+      code "echo 127.0.0.1 #{site[:host]} >> /etc/hosts"
+    end
 end
+
+
 
 if node[:lamp][:install][:xdebug]
 	include_recipe "vagrant_main::xdebug"

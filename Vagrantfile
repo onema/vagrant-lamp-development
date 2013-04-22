@@ -2,7 +2,7 @@ Vagrant::Config.run do |config|
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.host_name = "localhost"
-  config.vm.network :hostonly, "192.168.50.4"
+  #config.vm.network :hostonly, "192.168.50.4"
 
 
   config.vm.provision :chef_solo do |chef|
@@ -23,6 +23,20 @@ Vagrant::Config.run do |config|
         :server_root_password => "root",
         :server_debian_password => "root",
         :server_repl_password => "root"
+      },
+      :vhost => {
+        :localhost => {
+            :name => "localhost",
+            :host => "localhost", 
+            :aliases => ["localhost.web", "dev.localhost-static.web"],
+            :docroot => ""
+        },
+        :alleluuapi => {
+            :name => "alleluu-api",
+            :host => "alleluu.api", 
+            :aliases => ["alleluu.web"],
+            :docroot => "/a3s-API/public"
+        }
       }
     })
   end
