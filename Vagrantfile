@@ -7,12 +7,17 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = "cookbooks"    
     chef.add_recipe "vagrant_main"
 
-
+    #####################################
+    # MONGODB
     # https://github.com/edelight/chef-cookbooks
+    #####################################
     chef.add_recipe "mongodb::10gen_repo"
     chef.add_recipe "mongodb::default"
 
+    #####################################
+    # REDIS
     # https://github.com/phlipper/chef-redis
+    #####################################
     chef.add_recipe "redis"
 
     chef.json.merge!({
@@ -21,6 +26,12 @@ Vagrant::Config.run do |config|
         :server_debian_password => "root",
         :server_repl_password => "root"
       },
+      #####################################
+      # YOU WILL NEED TO ADD THESE DOMAINS 
+      # TO THE LIST OF HOSTS IN YOUR LOCAL 
+      # ENVIRONMENT FOR THESE TO BE PROPERLY 
+      # ROUTED
+      #####################################
       :vhost => {
         :localhost => {
             :name => "localhost",
