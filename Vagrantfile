@@ -1,7 +1,7 @@
 Vagrant::Config.run do |config|
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-  config.vm.host_name = "localhost"
+  #config.vm.host_name = "localhost"
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = "cookbooks"
@@ -10,11 +10,11 @@ Vagrant::Config.run do |config|
 
 
     # https://github.com/edelight/chef-cookbooks
-    chef.add_recipe "mongodb::10gen_repo"
-    chef.add_recipe "mongodb::default"
+#    chef.add_recipe "mongodb::10gen_repo"
+#    chef.add_recipe "mongodb::default"
 
     # https://github.com/phlipper/chef-redis
-    chef.add_recipe "redis"
+#    chef.add_recipe "redis"
 
     chef.json.merge!({
       :mysql => {
@@ -23,14 +23,20 @@ Vagrant::Config.run do |config|
         :server_repl_password => "root"
       },
       :vhost => {
+        :symfony => {
+            :name => "symfony",
+            :host => "symfony", 
+            :aliases => ["symfony"],
+            :docroot => "/symfony/web"
+        },
         :localhost => {
             :name => "localhost",
             :host => "localhost", 
             :aliases => ["localhost.web", "dev.localhost-static.web"],
             :docroot => ""
         },
-        :alleluuapi => {
-            :name => "alleluu-api",
+        :alleluu => {
+            :name => "alleluu",
             :host => "alleluu.api", 
             :aliases => ["alleluu.web"],
             :docroot => "/a3s-API/public"
@@ -43,4 +49,6 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 3306, 3307
   
   config.vm.share_folder "vagrant-root", "/vagrant", "~/Sites", :extra => 'dmode=777,fmode=777'
+
+  config.vm.customize ["modifyvm", :id, "--memory", 1024]
 end

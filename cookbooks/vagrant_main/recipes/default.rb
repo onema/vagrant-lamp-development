@@ -7,30 +7,30 @@ include_recipe "apt"
 include_recipe "build-essential"
 include_recipe "apache2"
 include_recipe "mysql::server"
-include_recipe "memcached"
+#include_recipe "memcached"
 include_recipe "php"
-include_recipe "php::module_apc"
-include_recipe "php::module_curl"
-include_recipe "php::module_mysql"
-include_recipe "php::module_gd"
-include_recipe "php::module_memcache"
+#include_recipe "php::module_apc"
+#include_recipe "php::module_curl"
+#include_recipe "php::module_mysql"
+#include_recipe "php::module_gd"
+#include_recipe "php::module_memcache"
 include_recipe "apache2::mod_php5"
 include_recipe "apache2::mod_rewrite"
-include_recipe "composer"
+#include_recipe "composer"
 
 # get phpmyadmin conf
-cookbook_file "/tmp/phpmyadmin.deb.conf" do
-  source "phpmyadmin.deb.conf"
-end
-bash "debconf_for_phpmyadmin" do
-  code "debconf-set-selections /tmp/phpmyadmin.deb.conf"
-end
-package "phpmyadmin"
+#cookbook_file "/tmp/phpmyadmin.deb.conf" do
+#  source "phpmyadmin.deb.conf"
+#end
+#bash "debconf_for_phpmyadmin" do
+#  code "debconf-set-selections /tmp/phpmyadmin.deb.conf"
+#end
+#package "phpmyadmin"
 
 # install the mongodb pecl
-php_pear "mongo" do
-  action :install
-end
+#php_pear "mongo" do
+#  action :install
+#end
 
 # manual method to set localhost
 #s = "localhost"
