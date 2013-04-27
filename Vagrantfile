@@ -35,11 +35,11 @@ Vagrant::Config.run do |config|
             :aliases => ["localhost.web", "dev.localhost-static.web"],
             :docroot => ""
         },
-        :alleluu => {
-            :name => "alleluu",
-            :host => "alleluu.api", 
-            :aliases => ["alleluu.web"],
-            :docroot => "/a3s-API/public"
+        :fuel => {
+            :name => "fuel",
+            :host => "fuel.api", 
+            :aliases => ["fuel.web"],
+            :docroot => "/fuel/public"
         }
       }
     })
