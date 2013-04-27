@@ -1,20 +1,19 @@
 Vagrant::Config.run do |config|
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-  #config.vm.host_name = "localhost"
+  config.vm.host_name = "localhost"
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "cookbooks"
-    
+    chef.cookbooks_path = "cookbooks"    
     chef.add_recipe "vagrant_main"
 
 
     # https://github.com/edelight/chef-cookbooks
-#    chef.add_recipe "mongodb::10gen_repo"
-#    chef.add_recipe "mongodb::default"
+    chef.add_recipe "mongodb::10gen_repo"
+    chef.add_recipe "mongodb::default"
 
     # https://github.com/phlipper/chef-redis
-#    chef.add_recipe "redis"
+    chef.add_recipe "redis"
 
     chef.json.merge!({
       :mysql => {
@@ -23,23 +22,17 @@ Vagrant::Config.run do |config|
         :server_repl_password => "root"
       },
       :vhost => {
-        :symfony => {
-            :name => "symfony",
-            :host => "symfony", 
-            :aliases => ["symfony"],
-            :docroot => "/symfony/web"
-        },
         :localhost => {
             :name => "localhost",
             :host => "localhost", 
             :aliases => ["localhost.web", "dev.localhost-static.web"],
             :docroot => ""
         },
-        :fuel => {
-            :name => "fuel",
-            :host => "fuel.api", 
-            :aliases => ["fuel.web"],
-            :docroot => "/fuel/public"
+        :symfony => {
+            :name => "symfony",
+            :host => "symfony.web", 
+            :aliases => ["symfony"],
+            :docroot => "/symfony/web"
         }
       }
     })
