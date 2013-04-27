@@ -1,6 +1,15 @@
 # Vagrantfile and Chef Recipes for LAMP Development
 
-Ubuntu 12.04 Vagrant setup for development. The inital intention of this repo is to have a single general purpose development environment for multiple projects, although it can be used to run a single project.
+Ubuntu 12.04 (precise64) Vagrant setup for development. The intention of this repo is to have a single general purpose development environment for multiple projects, although it can be used to run a single project.
+Software installed includes
+* Apache    - 2.2.22
+* PHP       - 5.3.10
+* MySQL     - 5.5.28
+* MongoDB   - 2.4.2
+* Xdebug    - 2.1.0
+* Memcached - 1.4.13
+* Redis     - 2.6.12
+
 
 ## Requirements
 
@@ -8,12 +17,17 @@ Ubuntu 12.04 Vagrant setup for development. The inital intention of this repo is
 * Vagrant (Tested with Vagrant v 1.2.1)- Tool for working with virtualbox images [Vagrant Home](https://www.vagrantup.com), click on 'download now link'
 * Git - Source Control Management [Downloads](http://git-scm.com/downloads)
 
+## Contributing
+The vision for this repo is to have a development environment that can be fully setup by modifying the Vagranfile.
+It is currently a work in progress and I will continue to update it adding more custom functionality and options to the Vagrantfile. Code contributions and any fixes/improvements are welcome :)
+
 # Quick Start 
 * [Configuration](#configuration)
 * [Start the VM](#start-the-vm)
 * [Open your web browser and try it out!](#open-your-web-browser-and-try-it-out)
 * [PHPMyAdmin](#phpmyadmin)
 * [Creating Custom Vhosts](#creating-custom-vhosts)
+* [XDebug](#xdebug)
 
 ##Configuration
 You can set up a development virtual machine for any of your development projects. All you need to do is copy the vagrant file to the location of your choise and change the following values:
@@ -84,7 +98,10 @@ Where project01, my-website and symfony are directories within the vagrant-root.
 PHPMyAdmin is installed by default and you can access it by visiting
 
 [http://localhost:8080/phpmyadmin/](http://localhost:8080/phpmyadmin/)
-
+```
+Username: root
+Password: root
+```
 ##Creating Custom Vhosts:
 
 Using the provided json array you can automatically set vhost from the Vagrantfile. You can add any number of vhost like this:
@@ -124,7 +141,19 @@ mywebsite.web:8080
 
 it will be routed correctly.
 
-### Using Vagrant
+## XDebug
+To enable xdebug you will need to map in the IDE the local files to the server files. There are several resources online that describe this process including:
+
+http://pietervogelaar.nl/php-xdebug-netbeans-vagrant/
+
+http://walkah.net/blog/debugging-php-with-vagrant/
+
+http://tiger-fish.com/blog/drupal-debugging-code-inside-vagrant-instance-using-xdebug
+
+Other than mapping you shouldn't need to change the xdebug configuration.
+
+
+# Using Vagrant
 
 Vagrant is [very well documented](http://vagrantup.com/v1/docs/index.html) but here are a few common commands:
 
@@ -135,13 +164,3 @@ Vagrant is [very well documented](http://vagrantup.com/v1/docs/index.html) but h
 
 
 ##### Virtual Machine Specifications #####
-
-* OS        - Ubuntu 12.04 (precise64)
-* Apache    - 2.2.22
-* PHP       - 5.3.10
-* MySQL     - 5.5.28
-* MongoDB   - 2.4.2
-* Xdebug    - 2.1.0
-* Memcached - 1.4.13
-* Redis     - 2.6.12
-Phpmyadmin is available [http://localhost:8080/phpmyadmin/](http://localhost:8080/phpmyadmin/). User `root`, Password `root`
