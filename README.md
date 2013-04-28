@@ -77,7 +77,7 @@ $ vagrant suspend
 and restore it using:
 
 ```
-$ vagrant restore
+$ vagrant resume
 ```
 
 ##Open your web browser and try it out!
