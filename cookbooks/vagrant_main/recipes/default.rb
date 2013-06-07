@@ -33,6 +33,8 @@ php_pear "mongo" do
   action :install
 end
 
+include_recipe "phpunit"
+
 # manual method to set localhost
 #s = "localhost"
 #site = {
