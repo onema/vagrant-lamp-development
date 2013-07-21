@@ -1,5 +1,5 @@
 # Some neat package 
-%w{ debconf git-core htop screen curl vim }.each do |a_package|
+%w{ debconf git-core htop screen curl }.each do |a_package|
   package a_package
 end
 
