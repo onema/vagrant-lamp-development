@@ -49,16 +49,16 @@ Vagrant.configure("2") do |config|
     })
   end
 
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 3306, host: 3307
   
   ##########################################################################
-  # REMOVE IF NFS IS ENABLED
+  # UNCOMMENT IF NFS IS DISABLED
   ##########################################################################
   #config.vm.synced_folder "~/Sites", "/vagrant"
   
   ##########################################################################
-  # NFS - UNCOMMENT TO ENABLE
+  # NFS 
   # Enable if you have performance issues with large projects. 
   # see the following links for more info:
   # http://forum.symfony-project.org/viewtopic.php?t=52241&p=167041#p147056
