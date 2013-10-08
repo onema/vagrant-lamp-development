@@ -11,6 +11,7 @@ repository.
  - [Git](http://git-scm.com/downloads).
  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
  - [Vagrant](http://downloads.vagrantup.com/) **(DO NOT USE VERSION 1.3.3 as it will not work use version 1.3.2 or 1.3.4 and up)**.
+
 ###Other requirements:
  - Open an account at GitHub.com if you don't have one already. 
 
