@@ -52,12 +52,11 @@ For this example the chef.cookbooks_path would be:
 chef.cookbooks_path = "vagrant-lamp-development/cookbooks"
 ```
 
-###conf.vm.shared_folder:
+###config.vm.synced_folder:
 ```ruby
-config.vm.share_folder "vagrant-root", "/vagrant", "~/Sites", :extra => 'dmode=777,fmode=777'#, :nfs => true
+config.vm.synced_folder "~/Sites", "/vagrant"
 ```
 Point the vagrant root to the directory containing all your web projects. In this case "~/Sites" is the location the development directory in the local machine. 
-
 
 
 ##Start the VM
