@@ -2,8 +2,8 @@
 ##Intro
 > Vagrant provides easy to configure, reproducible, and portable work environments built on top of industry-standard technology and controlled by a single consistent workflow to help maximize the productivity and flexibility of you and your team.
 
-The objective of this tutorial is to setup step by step all the tools needed to 
-get up and running with a php dev environment using the cookbooks found in this 
+The objective of this tutorial is to setup all the tools needed to 
+get a php dev environment using vagrant and the cookbooks found in this 
 repository.
 
 ##Requirements
@@ -17,9 +17,9 @@ repository.
 
 ##Installation
 For the sake of organization create a directory called lamp-development in your 
-home directory (or the directory of your choosing). 
+home directory (or the directory of your choose). 
 Once the software above has been correctly installed you will need to clone the 
-repository inside the new lamp-development directory:
+repository inside the new lamp-development directory (for Windows use Git Bash):
 
 ```
 > cd ~/
@@ -44,7 +44,7 @@ Now we'll need to make some small modifications to the Vagrantfile
  4) Set the system base memory to your preference, I do not recommend using less than 512:
 ```vb.customize ["modifyvm", :id, "--memory", "512"]```
 
-The full vagrant file sample for mac can be found below:   
+The full vagrant file sample for ***Mac*** can be found below:   
 
 ```
 Vagrant.configure("2") do |config|
@@ -104,7 +104,7 @@ Vagrant.configure("2") do |config|
   ##########################################################################
   # UNCOMMENT IF NFS IS DISABLED
   ##########################################################################
-  config.vm.synced_folder "~/Sites", "/vagrant"
+  #config.vm.synced_folder "~/Sites", "/vagrant"
   
   ##########################################################################
   # NFS 
@@ -115,8 +115,8 @@ Vagrant.configure("2") do |config|
   # http://www.phase2technology.com/blog/vagrant-and-nfs/
   ###########################################################################
   # Host-Only networking required for nfs shares
-  #config.vm.network "private_network", ip: "192.168.50.4"
-  #config.vm.synced_folder "~/Sites", "/vagrant", nfs: true
+  config.vm.network "private_network", ip: "192.168.50.4"
+  config.vm.synced_folder "~/Sites", "/vagrant", nfs: true
 
 
   config.vm.provider :virtualbox do |vb|
@@ -236,6 +236,8 @@ will have all the information you need to create and/or modify the hosts file an
 ```
 127.0.0.1       localhost
 ::1             localhost
+127.0.0.1       symfony.web
+
 ```
  
 
