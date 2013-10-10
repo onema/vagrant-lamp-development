@@ -1,9 +1,9 @@
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
   config.vm.box = "precise64"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.host_name = "localhost"
 
-  config.vm.provision :chef_solo do |chef|
+  config.vm.provision "chef_solo"  do |chef|
     chef.cookbooks_path = "cookbooks"    
     chef.add_recipe "vagrant_main"
 
@@ -49,24 +49,33 @@ Vagrant::Config.run do |config|
     })
   end
 
-  config.vm.forward_port 80, 8080
-  config.vm.forward_port 3306, 3307
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.network "forwarded_port", guest: 3306, host: 3307
   
   ##########################################################################
-  # REMOVE IF NFS IS ENABLED
+  # UNCOMMENT IF NFS IS DISABLED
   ##########################################################################
-  config.vm.share_folder "vagrant-root", "/vagrant", "~/Sites", :extra => 'dmode=777,fmode=777'
+  #config.vm.synced_folder "~/Sites", "/vagrant"
   
   ##########################################################################
-  # NFS - UNCOMMENT TO ENABLE
+  # NFS 
   # Enable if you have performance issues with large projects. 
   # see the following links for more info:
   # http://forum.symfony-project.org/viewtopic.php?t=52241&p=167041#p147056
   # http://docs.vagrantup.com/v2/synced-folders/nfs.html
   # http://www.phase2technology.com/blog/vagrant-and-nfs/
   ###########################################################################
-  #config.vm.network :hostonly, "192.168.33.10" # Host-Only networking required for nfs shares
-  #config.vm.share_folder "vagrant-root", "/vagrant", "~/Sites", :nfs => (RUBY_PLATFORM =~ /linux/ or RUBY_PLATFORM =~ /darwin/)
+  # Host-Only networking required for nfs shares
+  config.vm.network "private_network", ip: "192.168.50.4"
+  config.vm.synced_folder "~/Sites", "/vagrant", nfs: true
 
-  config.vm.customize ["modifyvm", :id, "--memory", 512]
+
+  config.vm.provider :virtualbox do |vb|
+    #   # Don't boot with headless mode
+    #   vb.gui = true
+    #
+    #   # Use VBoxManage to customize the VM. For example to change memory:
+    vb.customize ["modifyvm", :id, "--memory", "512"]
+  end
 end
+
