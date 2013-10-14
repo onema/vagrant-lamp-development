@@ -260,6 +260,28 @@ Now open a web browser and visit the page ```http://localhost:8080```
 
 **I recommend using vhost to point to every project in the Sites directory.**
 
+###Resolving date timezone issues
+By default the the php.ini value ```date.timezone``` is not set and Symfony will yell at you for not having it set. 
+in your vm edit the php.ini file:
+
+```
+> sudo nano /etc/php5/apache2/php.ini 
+``` 
+Search for the line: 
+```
+;date.timezone=
+```
+Replace it with:
+```
+date.timezone = America/Los_Angeles
+```
+Restart apache:
+```
+> sudo service apache2 restart
+```
+
+
+
 ###PHP MyAdmin
 The main cookbook installs mysql and phpmyadmin out of the box. To have access to 
 PHPMyAdmin and MySQL visit the following site on your web browser: ```http://localhost:8080/phpmyadmin```
