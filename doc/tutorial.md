@@ -9,6 +9,7 @@ repository.
 ##Requirements
 ###The following software is required: 
  - [Git](http://git-scm.com/downloads).
+ - [Create an SSH key in GitHub](https://help.github.com/articles/generating-ssh-keys)
  - [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
  - [Vagrant](http://downloads.vagrantup.com/) **(DO NOT USE VERSION 1.3.3 as it will not work use version 1.3.2 or 1.3.4 and up)**.
 
