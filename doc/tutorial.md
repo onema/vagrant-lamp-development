@@ -35,17 +35,22 @@ Copy the Vagrantfile inside vagrant to the lamp-development directory
 > cp vagrant/Vagrantfile Vagrantfile
 ```
 
-Now we'll need to make some small modifications to the Vagrantfile
- 1) Update the chef.cookbooks_path to point to the cookbooks inside the vagrant directory:
+Now we'll need to make some small modifications to the Vagrantfile:
+
+ 1. Update the chef.cookbooks_path to point to the cookbooks inside the vagrant directory:
 ``` chef.cookbooks_path = "vagrant/cookbooks"```
- 2) NFS is enabled by default, if you don't need it comment it out, and uncomment the following line:
-```config.vm.synced_folder "~/Sites", "/vagrant"```  NFS folders do not work on windows so it can be disabled.
- 3) Set the synced_folder to your projects directory. In this example I have placed all my projects in 
-```~/Sites``` but this directory can be any directory in the host computer. NOTE AT THIS POINT THE SHARED DIRECTORY IN THE GUEST MACHINE MUST BE ```vagrant```.
- 4) Set the system base memory to your preference, I do not recommend using less than 512:
+ 2. **For Windows users only:** comment the NFS lines out, and uncomment the following line:
+```config.vm.synced_folder "~/Sites", "/vagrant"```  
+NFS folders do not work on windows so it can be disabled.
+ 3. Set the ```synced_folder``` to your projects directory. In this example I have placed all my projects in 
+```~/Sites``` but this directory can be any directory in the host computer. NOTE: THE SHARED DIRECTORY IN THE GUEST MACHINE MUST BE ```vagrant```.
+ 4. Set the system base memory to your preference, **I do not recommend using less than 512**:
 ```vb.customize ["modifyvm", :id, "--memory", "512"]```
 
-The full vagrant file sample for ***Mac*** can be found below:   
+Those are all the updates you need to make in the Vagrantfile for this project. 
+See the sample Vagrantfile for Mac and Windows below.
+
+Sample for ***Mac*** :   
 
 ```
 Vagrant.configure("2") do |config|
