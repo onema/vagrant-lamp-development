@@ -27,6 +27,14 @@ vhost array in the Vagrantfile.
         }
 ```
 
+Then run the reload command to generate the new vhost. 
+
+```
+vagrant reload
+```
+
+Make sure to add the new name to the hosts list!
+
 ##Compatibility
 That's it, I have tested this setup in Mac OS 10.8.5 and Windows 8 using gitbash.
 
