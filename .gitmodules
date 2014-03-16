@@ -4,3 +4,6 @@
 [submodule "cookbooks/redis"]
 	path = cookbooks/redis
 	url = git@github.com:brianbianco/redisio.git
+[submodule "cookbooks/java"]
+	path = cookbooks/java
+	url = git@github.com:socrata-cookbooks/java.git
