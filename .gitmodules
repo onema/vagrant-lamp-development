@@ -1,0 +1,6 @@
+[submodule "cookbooks/neo4j-server"]
+	path = cookbooks/neo4j-server
+	url = git@github.com:michaelklishin/neo4j-server-chef-cookbook.git
+[submodule "cookbooks/redis"]
+	path = cookbooks/redis
+	url = git@github.com:brianbianco/redisio.git
