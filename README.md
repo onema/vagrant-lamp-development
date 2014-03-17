@@ -153,6 +153,33 @@ http://tiger-fish.com/blog/drupal-debugging-code-inside-vagrant-instance-using-x
 Other than mapping you shouldn't need to change the xdebug configuration.
 
 
+## Neo4j
+To install Neo4j graph database uncomment the line to add the neo4j server recipe
+
+```
+# Vagrantfile
+# ...
+
+chef.add_recipe "neo4j-server::tarball"
+
+# ... 
+```
+Neo4j requires JDK7, to overwrite the default version that comes in the java cookbook, to do this uncomment  the following lines in the Chef JSON:
+
+```
+# Vagrant file
+# ...
+    chef.json.merge!({
+      "java" => {               # <=== Uncomment these lines
+        "jdk_version" => "7"    # <===
+      },                        # <===
+      # ...
+   })
+# ...
+```
+
+Access the Neo4j web admin by opinning `http://localhost:7474/webadmin/` in your web browser. 
+
 # Using Vagrant
 
 Vagrant is [very well documented](http://vagrantup.com/v1/docs/index.html) but here are a few common commands:
