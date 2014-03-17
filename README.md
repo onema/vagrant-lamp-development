@@ -52,12 +52,11 @@ For this example the chef.cookbooks_path would be:
 chef.cookbooks_path = "vagrant-lamp-development/cookbooks"
 ```
 
-###conf.vm.shared_folder:
+###config.vm.synced_folder:
 ```ruby
-config.vm.share_folder "vagrant-root", "/vagrant", "~/Sites", :extra => 'dmode=777,fmode=777'#, :nfs => true
+config.vm.synced_folder "~/Sites", "/vagrant"
 ```
 Point the vagrant root to the directory containing all your web projects. In this case "~/Sites" is the location the development directory in the local machine. 
-
 
 
 ##Start the VM
@@ -152,6 +151,33 @@ http://tiger-fish.com/blog/drupal-debugging-code-inside-vagrant-instance-using-x
 
 Other than mapping you shouldn't need to change the xdebug configuration.
 
+
+## Neo4j
+To install Neo4j graph database uncomment the line to add the neo4j server recipe
+
+```
+# Vagrantfile
+# ...
+
+chef.add_recipe "neo4j-server::tarball"
+
+# ... 
+```
+Neo4j requires JDK7, to overwrite the default version that comes in the java cookbook, to do this uncomment  the following lines in the Chef JSON:
+
+```
+# Vagrantfile
+# ...
+    chef.json.merge!({
+      "java" => {               # <=== Uncomment these lines
+        "jdk_version" => "7"    # <===
+      },                        # <===
+      # ...
+   })
+# ...
+```
+
+Access the Neo4j web admin by opinning `http://localhost:7474/webadmin/` in your web browser. 
 
 # Using Vagrant
 
