@@ -16,11 +16,25 @@ Vagrant.configure("2") do |config|
 
     #####################################
     # REDIS
-    # https://github.com/phlipper/chef-redis
+    # https://github.com/brianbianco/redisio/
     #####################################
     chef.add_recipe "redis"
 
+    #####################################
+    # NEO4J
+    # https://github.com/michaelklishin/neo4j-server-chef-cookbook
+    #####################################
+    # chef.add_recipe "neo4j-server::tarball"
+
+
     chef.json.merge!({
+      #####################################
+      # Uncomment to overwrite default JDK 
+      # with required version 7 for Neo4j
+      #####################################
+      #"java" => {
+      #  "jdk_version" => "7"
+      #},
       :mysql => {
         :server_root_password => "root",
         :server_debian_password => "root",
