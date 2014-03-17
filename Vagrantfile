@@ -65,6 +65,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 3306, host: 3307
+
+  ##########################################################################  
+  # Required for neo4j
+  ##########################################################################
+  # config.vm.network "forwarded_port", guest: 7474, host: 7474
   
   ##########################################################################
   # UNCOMMENT IF NFS IS DISABLED
