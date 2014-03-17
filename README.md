@@ -167,7 +167,7 @@ chef.add_recipe "neo4j-server::tarball"
 Neo4j requires JDK7, to overwrite the default version that comes in the java cookbook, to do this uncomment  the following lines in the Chef JSON:
 
 ```
-# Vagrant file
+# Vagrantfile
 # ...
     chef.json.merge!({
       "java" => {               # <=== Uncomment these lines
