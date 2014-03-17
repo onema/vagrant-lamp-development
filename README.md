@@ -176,6 +176,11 @@ Neo4j requires JDK7, to overwrite the default version that comes in the java coo
    })
 # ...
 ```
+Finally you have to forward port 7474, uncomment the line that does this:
+
+```
+  config.vm.network "forwarded_port", guest: 7474, host: 7474
+```
 
 Access the Neo4j web admin by opinning `http://localhost:7474/webadmin/` in your web browser. 
 
