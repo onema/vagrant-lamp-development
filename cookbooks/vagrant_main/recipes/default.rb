@@ -27,6 +27,7 @@ bash "debconf_for_phpmyadmin" do
   code "debconf-set-selections /tmp/phpmyadmin.deb.conf"
 end
 package "phpmyadmin"
+package "libsasl2-dev"
 
 # install the mongodb pecl
 php_pear "mongo" do
